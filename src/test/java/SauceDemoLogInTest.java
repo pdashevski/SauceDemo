@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SauceDemoLogInTest {
+    public static final String DRIVER_PATH = "src/test/resources/chromedriver.exe";
     public static final String LOGIN_PAGE = "https://www.saucedemo.com/";
     public static final By USERNAME_INPUT = By.id("user-name");
     public static final By PASSWORD_INPUT = By.id("password");
@@ -21,7 +22,7 @@ public class SauceDemoLogInTest {
 
     @Test
     public void logInPageMainElementsShouldBeDisplayed() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
         WebDriver browser = new ChromeDriver();
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -34,7 +35,7 @@ public class SauceDemoLogInTest {
 
     @Test
     public void logInWithStandardUser() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
         WebDriver browser = new ChromeDriver();
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -49,7 +50,7 @@ public class SauceDemoLogInTest {
 
     @Test
     public void logInWithLockedOutUser() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
         WebDriver browser = new ChromeDriver();
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -64,7 +65,7 @@ public class SauceDemoLogInTest {
 
     @Test
     public void logInWithProblemUser() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
         WebDriver browser = new ChromeDriver();
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -79,7 +80,7 @@ public class SauceDemoLogInTest {
 
     @Test
     public void logInWithPerformanceGlitchUser() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
         WebDriver browser = new ChromeDriver();
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -92,8 +93,8 @@ public class SauceDemoLogInTest {
         browser.quit();
     }
 
-    public String loginList(int index) {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+    public static String loginList(int index) {
+        System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
         WebDriver browser = new ChromeDriver(options);
@@ -105,8 +106,8 @@ public class SauceDemoLogInTest {
         return myList.get(index);
     }
 
-    public String passwordList() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+    public static String passwordList() {
+        System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
         WebDriver browser = new ChromeDriver(options);
