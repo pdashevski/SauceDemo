@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPage extends BasePage{
+public class CheckoutPage extends BasePage {
 
     public static final By FIRST_NAME = By.id("first-name");
     public static final By LAST_NAME = By.id("last-name");
@@ -11,6 +11,8 @@ public class CheckoutPage extends BasePage{
     public static final By CONTINUE_BUTTON = By.xpath("//*[@class='btn_primary cart_button']");
     public static final By FINISH_BUTTON = By.xpath("//*[@class='btn_action cart_button']");
     public static final By ORDER_COMPLETE_TEXT = By.xpath("//*[text()='THANK YOU FOR YOUR ORDER']");
+    public static final By TAX = By.xpath("//*[@class='summary_tax_label']");
+    public static final By TOTAL_PRICE = By.xpath("//*[@class='summary_total_label']");
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -38,5 +40,17 @@ public class CheckoutPage extends BasePage{
 
     public String orderCompleteText() {
         return driver.findElement(ORDER_COMPLETE_TEXT).getText();
+    }
+
+    public double getTaxes() {
+        String element = driver.findElement(TAX).getText();
+        element = element.replace("Tax: $", "");
+        return Double.parseDouble(element);
+    }
+
+    public double getTotalPrice() {
+        String element = driver.findElement(TOTAL_PRICE).getText();
+        element = element.replace("Total: $", "");
+        return Double.parseDouble(element);
     }
 }
