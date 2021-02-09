@@ -20,7 +20,6 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(cartPage.getShoppingCartElementItemLabel("Sauce Labs Fleece Jacket"),
                 "Sauce Labs Fleece Jacket",
                 "Product label does not match with origin or does not exist in cart");
-
     }
 
     @Test
@@ -40,6 +39,5 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(checkoutPage.orderCompleteText(),
                 "THANK YOU FOR YOUR ORDER",
                 "Order filed!");
-
     }
 }
