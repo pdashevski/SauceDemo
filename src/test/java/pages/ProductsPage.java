@@ -1,10 +1,12 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 public class ProductsPage extends BasePage {
-
     public static final String ADD_TO_CART_BUTTON = "//*[@class='inventory_item']//*[contains(text(),'%s')]" +
             "/ancestor::*[@class='inventory_item']/descendant::*[@class='btn_primary btn_inventory']";
     public static final String REMOVE_FROM_CART_BUTTON = "//*[@class='inventory_item']//*[contains(text(),'%s')]" +
@@ -14,6 +16,7 @@ public class ProductsPage extends BasePage {
             "//descendant::*[@class='inventory_item_price']";
     public static final String PRODUCT_PRICE_PRODUCT_PAGE = "//*[@class='inventory_details_price']";
     public static final By ADD_TO_CART_BUTTON_PRODUCT = By.cssSelector(".btn_primary.btn_inventory");
+    public static final By PRODUCT_LABEL = By.cssSelector(".product_label");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -49,5 +52,13 @@ public class ProductsPage extends BasePage {
 
     public void addProductToCartProduct() {
         driver.findElement(ADD_TO_CART_BUTTON_PRODUCT).click();
+    }
+
+    public void isPageOpened() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_LABEL));
+        } catch (TimeoutException exception) {
+            Assert.fail("Product page was not loaded");
+        }
     }
 }

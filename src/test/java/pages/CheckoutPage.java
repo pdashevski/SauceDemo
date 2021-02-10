@@ -1,10 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutPage extends BasePage {
-
     public static final By FIRST_NAME = By.id("first-name");
     public static final By LAST_NAME = By.id("last-name");
     public static final By POSTAL_CODE = By.id("postal-code");
@@ -13,6 +13,7 @@ public class CheckoutPage extends BasePage {
     public static final By ORDER_COMPLETE_TEXT = By.xpath("//*[text()='THANK YOU FOR YOUR ORDER']");
     public static final By TAX = By.xpath("//*[@class='summary_tax_label']");
     public static final By TOTAL_PRICE = By.xpath("//*[@class='summary_total_label']");
+    public static final By FINAL_PAGE_TITLE = By.xpath("//*[@class='subheader']");
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -52,5 +53,16 @@ public class CheckoutPage extends BasePage {
         String element = driver.findElement(TOTAL_PRICE).getText();
         element = element.replace("Total: $", "");
         return Double.parseDouble(element);
+    }
+
+    public boolean isPageOpened() {
+        boolean isOpened;
+        try {
+            driver.findElement(FINAL_PAGE_TITLE);
+            isOpened = true;
+        } catch (TimeoutException ex) {
+            isOpened = false;
+        }
+        return isOpened;
     }
 }

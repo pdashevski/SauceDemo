@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest {
-
     @Test
     public void addedProductsToCartShouldBeContained() {
         loginPage.open();
@@ -12,6 +11,8 @@ public class CartTest extends BaseTest {
         productsPage.addProductsToCart("Sauce Labs Bolt T-Shirt");
         productsPage.addProductsToCart("Sauce Labs Fleece Jacket");
         cartPage.open();
+
+        Assert.assertTrue(cartPage.cartPageIsOpened(), "Cart page is not opened!");
 
         Assert.assertEquals(cartPage.getShoppingCartElementItemLabel("Sauce Labs Bolt T-Shirt"),
                 "Sauce Labs Bolt T-Shirt",
@@ -29,6 +30,9 @@ public class CartTest extends BaseTest {
         productsPage.openProductPageByLink("Sauce Labs Bike Light");
         productsPage.addProductToCartProduct();
         cartPage.open();
+
+        Assert.assertTrue(cartPage.cartPageIsOpened(), "Cart page is not opened!");
+
         cartPage.checkout();
         checkoutPage.addFirstName("alex");
         checkoutPage.addLastName("fifa");
@@ -36,6 +40,7 @@ public class CartTest extends BaseTest {
         checkoutPage.clickContinueToGoToOverview();
         checkoutPage.clickFinish();
 
+        Assert.assertTrue(checkoutPage.isPageOpened(), "Finish page is onot opened!");
         Assert.assertEquals(checkoutPage.orderCompleteText(),
                 "THANK YOU FOR YOUR ORDER",
                 "Order filed!");

@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CheckoutTest extends BaseTest {
-
     @Test
     public void checkTotalPrice() {
         loginPage.open();
@@ -13,6 +12,9 @@ public class CheckoutTest extends BaseTest {
         double priceProduct = Double.parseDouble(productsPage.productPriceProductPage());
         productsPage.addProductToCartProduct();
         cartPage.open();
+
+        Assert.assertTrue(cartPage.cartPageIsOpened(), "Cart page is not opened!");
+
         cartPage.checkout();
         checkoutPage.addFirstName("alex");
         checkoutPage.addLastName("fifa");
