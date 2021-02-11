@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
 public class CartPage extends BasePage {
@@ -31,7 +30,7 @@ public class CartPage extends BasePage {
         try {
             driver.findElement(YOU_CART_PAGE_LABEL).getText();
             isOpened = true;
-        } catch (TimeoutException ex) {
+        } catch (Exception ex) {
             isOpened = false;
         }
         return isOpened;
