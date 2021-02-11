@@ -4,6 +4,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
+    @Test
+    public void correctCredentials() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+        productsPage.isPageOpened(); //Assert.fail() in ProductsPage
+    }
 
     @Test
     public void wrongPassword() {
