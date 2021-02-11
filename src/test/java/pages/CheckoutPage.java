@@ -60,7 +60,7 @@ public class CheckoutPage extends BasePage {
         try {
             driver.findElement(FINAL_PAGE_TITLE);
             isOpened = true;
-        } catch (TimeoutException ex) {
+        } catch (Exception ex) {
             isOpened = false;
         }
         return isOpened;

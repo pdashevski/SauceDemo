@@ -57,7 +57,7 @@ public class ProductsPage extends BasePage {
     public void isPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_LABEL));
-        } catch (TimeoutException exception) {
+        } catch (Exception exception) {
             Assert.fail("Product page was not loaded");
         }
     }
