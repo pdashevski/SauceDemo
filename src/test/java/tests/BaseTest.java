@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -26,6 +27,11 @@ public class BaseTest {
     @BeforeMethod
     public void setup(ITestContext iTestContext) {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        if(System.getProperty("browser").equals("firefox")) {
+            driver = new FirefoxDriver();
+        } else {
+            //driver = new ChromeDriver();
+        }
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
