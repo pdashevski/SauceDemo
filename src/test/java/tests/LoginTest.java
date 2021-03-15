@@ -4,14 +4,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
-    @Test
+
+    @Test(retryAnalyzer = Retry.class)
     public void correctCredentials() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.isPageOpened(); //Assert.fail() in ProductsPage
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void wrongPassword() {
         loginPage.open();
         loginPage.login("standard_user", "123");
@@ -21,7 +22,7 @@ public class LoginTest extends BaseTest {
                 "Error message is not correct");
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void emptyUsernameAndPassword() {
         loginPage.open();
         loginPage.login("", "");

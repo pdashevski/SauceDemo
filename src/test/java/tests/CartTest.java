@@ -4,7 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest {
-    @Test
+
+    @Test(retryAnalyzer = Retry.class)
     public void addedProductsToCartShouldBeContained() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -23,7 +24,7 @@ public class CartTest extends BaseTest {
                 "Product label does not match with origin or does not exist in cart");
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void proceedToCheckoutFromProductPage() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
