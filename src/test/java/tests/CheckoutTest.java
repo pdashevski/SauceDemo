@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class CheckoutTest extends BaseTest {
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, description = "Checking total price")
     public void checkTotalPrice() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

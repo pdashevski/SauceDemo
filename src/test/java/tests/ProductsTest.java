@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class ProductsTest extends BaseTest {
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, description = "Add selected product to cart")
     public void addProductsToCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -18,7 +18,7 @@ public class ProductsTest extends BaseTest {
                 "REMOVE button is not displayed. Product is not added to cart");
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, description = "Checking price of selected and added product")
     public void checkProductPrice() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -29,7 +29,7 @@ public class ProductsTest extends BaseTest {
         Assert.assertEquals(priceInventory, priceProduct, "Prices are not equals!");
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, description = "Adding selected product to cart")
     public void addProductToCartFromProductPage() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

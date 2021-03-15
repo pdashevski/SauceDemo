@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -13,10 +14,12 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    @Step("Main page opening")
     public void open() {
         driver.get("https://www.saucedemo.com/");
     }
 
+    @Step("Log In with username:{userName} and password:{password}")
     public void login(String userName, String password) {
         driver.findElement(LOGIN_INPUT).sendKeys(userName);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);

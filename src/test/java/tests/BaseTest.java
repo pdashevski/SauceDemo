@@ -22,7 +22,7 @@ public class BaseTest {
     CartPage cartPage;
     CheckoutPage checkoutPage;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Browser opening")
     public void setup(ITestContext iTestContext) {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
@@ -35,7 +35,7 @@ public class BaseTest {
         checkoutPage = new CheckoutPage(driver);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Browser closing")
     public void tearDown() {
         if (driver != null) {
             driver.quit();

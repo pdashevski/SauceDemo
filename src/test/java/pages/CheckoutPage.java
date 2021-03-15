@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -19,22 +20,27 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
+    @Step("First name adding")
     public void addFirstName(String firstName) {
         driver.findElement(FIRST_NAME).sendKeys(firstName);
     }
 
+    @Step("Last name adding")
     public void addLastName(String lastName) {
         driver.findElement(LAST_NAME).sendKeys(lastName);
     }
 
+    @Step("Postal code adding")
     public void addPostal(String postalCode) {
         driver.findElement(POSTAL_CODE).sendKeys(postalCode);
     }
 
+    @Step("Going to overview")
     public void clickContinueToGoToOverview() {
         driver.findElement(CONTINUE_BUTTON).click();
     }
 
+    @Step("Finishing...")
     public void clickFinish() {
         driver.findElement(FINISH_BUTTON).click();
     }
@@ -43,18 +49,21 @@ public class CheckoutPage extends BasePage {
         return driver.findElement(ORDER_COMPLETE_TEXT).getText();
     }
 
+    @Step("Taxes calculating")
     public double getTaxes() {
         String element = driver.findElement(TAX).getText();
         element = element.replace("Tax: $", "");
         return Double.parseDouble(element);
     }
 
+    @Step("Total price calculationg")
     public double getTotalPrice() {
         String element = driver.findElement(TOTAL_PRICE).getText();
         element = element.replace("Total: $", "");
         return Double.parseDouble(element);
     }
 
+    @Step("Checkout page opening verifying")
     public boolean isPageOpened() {
         boolean isOpened;
         try {

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -13,18 +14,22 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
+    @Step("Shopping cart opening by icon")
     public void open() {
         driver.findElement(SHOPPING_CART_ICON).click();
     }
 
+    @Step("Getting elements ids in shopping cart")
     public String getShoppingCartElementItemLabel(String productName) {
         return driver.findElement(By.xpath(String.format(CART_ITEMS_LABEL, productName))).getText();
     }
 
+    @Step("Clicking checkout button")
     public void checkout() {
         driver.findElement(CHECKOUT_BUTTON).click();
     }
 
+    @Step("Cart page opening verifying")
     public boolean cartPageIsOpened() {
         boolean isOpened;
         try {
