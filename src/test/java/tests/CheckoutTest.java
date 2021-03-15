@@ -3,6 +3,7 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
 public class CheckoutTest extends BaseTest {
 
     @Test(retryAnalyzer = Retry.class)
