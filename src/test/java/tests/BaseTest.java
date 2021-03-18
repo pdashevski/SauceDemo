@@ -1,7 +1,9 @@
 package tests;
 
+import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,8 +12,7 @@ import pages.CartPage;
 import pages.CheckoutPage;
 import pages.LoginPage;
 import pages.ProductsPage;
-
-import java.util.concurrent.TimeUnit;
+import utils.CapabilitiesGenerator;
 
 @Listeners(TestListener.class)
 public class BaseTest {
@@ -24,10 +25,12 @@ public class BaseTest {
 
     @BeforeMethod(description = "Browser opening")
     public void setup(ITestContext iTestContext) {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        try {
+            driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
+        } catch (SessionNotCreatedException ex) {
+            Assert.fail("Браузер не был открыт. Проверьте, что используется корректная версия драйвера");
+            //log.fatal(ex.getLocalizedMessage());
+        }
         iTestContext.setAttribute("driver", driver);
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
