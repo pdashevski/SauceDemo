@@ -1,5 +1,6 @@
 package tests;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +15,7 @@ import pages.LoginPage;
 import pages.ProductsPage;
 import utils.CapabilitiesGenerator;
 
+@Log4j2
 @Listeners(TestListener.class)
 public class BaseTest {
 
@@ -29,7 +31,7 @@ public class BaseTest {
             driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         } catch (SessionNotCreatedException ex) {
             Assert.fail("Браузер не был открыт. Проверьте, что используется корректная версия драйвера");
-            //log.fatal(ex.getLocalizedMessage());
+            log.fatal(ex.getLocalizedMessage());
         }
         iTestContext.setAttribute("driver", driver);
         loginPage = new LoginPage(driver);
