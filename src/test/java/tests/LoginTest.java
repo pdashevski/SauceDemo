@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.PropertyReader;
 
 public class LoginTest extends BaseTest {
 
@@ -10,6 +11,7 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.isPageOpened(); //Assert.fail() in ProductsPage
+        System.out.println((System.getenv().getOrDefault("PATH", PropertyReader.getProperty("user"))));
     }
 
     @Test(retryAnalyzer = Retry.class, description = "Login with incorrect credentials")
